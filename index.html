@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">User posts</h2>
+
+        <div id="loading" class="text-center">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p>Loading ...</p>
+        </div>
+
+        <table class="table table-bordered table-striped d-none" id="dataTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                </tr>
+            </thead>
+
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <br />
+
+    <div class="container">
+        <div class="row" id="row"></div>
+    </div>
+
+    <script>
+        let dataTable = document.getElementById("dataTable");
+        let tableBody = document.getElementById("tableBody");
+        let loading = document.getElementById("loading");
+        let row = document.getElementById("row");
+
+        function fetchData() {
+            fetch("https://jsonplaceholder.typicode.com/posts")
+                .then((response) => response.json())
+                .then((data) => {
+                    loading.classList.add("d-none");
+                    dataTable.classList.remove("d-none");
+
+                    data.reverse().forEach((post) => {
+                        let row = `
+                        <tr>
+                            <td>${post.id}</td>
+                            <td>${post.title}</td>
+                            <td>${post.body}</td>
+                        </tr>
+
+                        `;
+
+                        tableBody.innerHTML = row + tableBody.innerHTML;
+                    });
+                })
+                .catch((err) => {
+                    console.error("Error:", err);
+                });
+        }
+        fetchData();
+
+
+
+        function fetchDataRow() {
+            fetch("https://jsonplaceholder.typicode.com/posts")
+                .then((response) => response.json())
+                .then((data) => {
+                    data.reverse().forEach((post) => {
+                        let col = `
+                <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${post.title}</h5>
+                                <p class="card-text">${post.body}</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+            `;
+
+                        row.innerHTML = col + row.innerHTML;
+                    });
+                });
+        }
+
+        fetchDataRow();
+    </script>
+</body>
+
+</html>
