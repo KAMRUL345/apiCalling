@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div>
+        <table id="dataTable" class="">
+            <thead class="table-dark">
+                <tr>
+                    <th>UserId</th>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+
+        </table>
+    </div>
+    <script>
+        let dataTable = document.getElementById("dataTable");
+        let tableBody = document.getElementById("tableBody");
+
+        function fetchData(){
+            fetch("https://jsonplaceholder.typicode.com/photos")
+            .then((response) => response.json())
+            // .then(data =>console.log(data))
+            .then((data) => {
+                data.reverse().forEach((post1)=>{
+                    let row = `
+                <tr>
+                    <td>${post1.albumId}</td>
+                    <td>${post1.id}</td>
+                    <td>${post1.title}</td>
+                    /* <td><img src="${post1.thumbnailUrl}"></td>*/
+                </tr>
+                `
+                tableBody.innerHTML = row + tableBody.innerHTML;
+                });
+
+            })
+            .catch((err) => {
+                    console.error("Error:", err);
+                });
+
+
+        }
+        fetchData();
+    </script>
+    
+</body>
+</html>

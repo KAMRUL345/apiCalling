@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>api</title>
+  </head>
+  <body>
+    <h1>Api Calling</h1>
+    <p id="demo">Demo Text</p>
+    <button onclick="FF()">Click Me</button>
+
+    <script>
+      function FF() {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          const container = document.getElementById("demo");
+        //   container.innerHTML = xhr.responseText;
+          container.innerHTML = console.log(xhr);
+        };
+        let url = "https://jsonplaceholder.typicode.com/posts";
+        xhr.open("GET", url, true);
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest()</title>
+</head>
+<body>
+<div id="container"></div>
+
+
+    <script>
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
+        xhr.onreadystatechange = function(){
+            // console.log(xhr);
+        if(xhr.readyState == 4 && xhr.status == 200){
+            const container = document.getElementById('container');
+            // console.log(xhr.response);
+            const data = JSON.parse(xhr.response);
+            console.log(data)
+
+            data.forEach(item=>{
+                const itemContainer = document.createElement("dvi");
+                itemContainer.innerHTML = `
+                    <h2>${item.title}</h2>
+                    <p>${item.body}</p>
+                    <p>${item.userId}</p>
+                    <p>${item.id}</p>
+                `
+                container.appendChild(itemContainer)
+            })
+        }
+        }
+        xhr.send();
+    </script>
+    
+</body>
+</html>

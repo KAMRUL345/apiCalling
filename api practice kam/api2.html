@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            padding: 5px;
+            /* color: red; */
+            font-size: 20px;
+            border-bottom: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="div1">
+        
+    </div>
+    
+
+    <script>
+        function fetchData(){
+            let url = "https://jsonplaceholder.typicode.com/users";
+            fetch(url)
+            .then((res)=>res.json())
+            .then((data)=>{
+                for(let i=0; i<data.length; i++){
+                    let dataUsername = data[i].username;
+                    let dataUserEmail = data[i].email;
+
+                //   let p = document.getElementById('demo')
+                //   p.innerHTML = dataUsername;
+
+                  const para = document.createElement("p");
+                  const node = document.createTextNode("Username is: " + dataUsername + " & User Email is: " + dataUserEmail);
+                    para.appendChild(node);
+                    const element = document.getElementById("div1");
+                    element.appendChild(para);
+                    // para.
+       
+                }
+
+
+            })
+        }
+        fetchData();
+    </script>
+    
+</body>
+</html>

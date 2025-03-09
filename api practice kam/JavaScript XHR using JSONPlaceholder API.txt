@@ -1,0 +1,28 @@
+Read Posts [GET]
+https://codeomelet.com/posts/javascript-xhr-using-jsonplaceholder-api#read-posts-get
+
+
+
+const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+const xhr = new XMLHttpRequest();
+xhr.onload = () => {
+	if (xhr.status === 200) {
+		const posts = JSON.parse(xhr.responseText);
+		console.log(posts);
+	} else {
+		console.log('Server response:', xhr.status);
+	}
+};
+xhr.onerror = () => {
+	console.log('An error occurred, not able to process the request.');
+};
+xhr.open('GET', apiUrl, true);
+xhr.send();
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
