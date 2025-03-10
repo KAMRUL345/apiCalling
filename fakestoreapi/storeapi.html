@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="div1">
+        
+    </div>
+
+
+    <script>
+        function fetchData(){
+            fetch('https://fakestoreapi.com/products/')
+            .then(res=>res.json())
+            // .then(json=>console.log(json))
+            .then(data=>{
+                for(let i = 0; i<data.length; i++){
+                    let dataId = data[i].id;
+                    let dataTitle = data[i].title;
+                    let dataPrice = data[i].price;
+                    let dataDescription = data[i].description;
+                    let dataCategory = data[i].category;
+                    let dataImage = data[i].image;
+                    let dataRating = data[i].rating;
+
+
+
+                    const para = document.createElement("p");
+                    const node1 = document.createTextNode("id: " + dataId);
+                    const node2 = document.createTextNode("Title: " + dataTitle);
+                    para.appendChild(node1);
+                    para.appendChild(node2);
+                    const element = document.getElementById("div1");
+                    element.appendChild(para);
+
+                }
+            })
+        }
+        fetchData();
+    </script>
+    
+</body>
+</html>

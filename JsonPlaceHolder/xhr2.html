@@ -4,9 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XMLHttpRequest()</title>
+    <style>
+        .div {
+            background-color: #d1d1d1;
+            margin: 30px;
+            padding: 30px;
+            border: 1px solid red;
+        }
+        .wrapper {
+            background-color: bisque;
+        }
+    </style>
 </head>
 <body>
-<div id="container"></div>
+    <div class="wrapper">
+        <div id="container"></div>
+
+    </div>
+
 
 
     <script>
@@ -21,14 +36,17 @@
             console.log(data)
 
             data.forEach(item=>{
-                const itemContainer = document.createElement("dvi");
+                const itemContainer = document.createElement("div");
                 itemContainer.innerHTML = `
-                    <h2>${item.title}</h2>
-                    <p>${item.body}</p>
-                    <p>${item.userId}</p>
-                    <p>${item.id}</p>
+                    <p>User Id: ${item.id}</p>
+                    <p>Id: ${item.userId}</p>
+                    <h2>Title: ${item.title}</h2>
+                    <p>Message Body: ${item.body}</p>  
+                    <hr>
+                
                 `
-                container.appendChild(itemContainer)
+                container.appendChild(itemContainer);
+                container.classList.add("div");
             })
         }
         }
