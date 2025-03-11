@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest()</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1>POST Method</h1>
+    <div>
+        <input type="text" placeholder="Title" id="title">
+        <input type="text" placeholder="Body" id="body">
+        <button onclick="postData()">Create Post</button>
+
+    </div>
+    <br>
+    <hr>
+
+    <h2>Post result display</h2>
+
+    <div id="postResult"></div>
+
+
+
+    <script>
+        function postData(){
+            
+        const title = document.getElementById('title').value;
+        const body = document.getElementById('body').value;
+
+        if(!title || !body) {
+            alert("Please enter ttiel and body");
+            return;
+        }
+
+        console.log(title, body);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://jsonplaceholder.typicode.com/posts", true);
+        xhr.setRequestHeader("Content-Type", "application/json" );
+        const data = JSON.stringify({title:title, body:body});
+
+        //response
+        xhr.onreadystatechange = function (){
+            if(xhr.readyState == 4, xhr.status == 201) {
+                console.log(xhr.response)
+
+                document.getElementById("postResult").innerText = xhr.responseText;
+            }
+        }
+        xhr.send(data);
+        }
+
+
+        
+    </script>
+    
+</body>
+</html>
