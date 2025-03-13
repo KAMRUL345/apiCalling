@@ -36,6 +36,7 @@
         .then(result=>{
             const data = result.products;
             let rows = '';
+            console.log(data);
             data.forEach(product=>{
                 rows += `
                     <tr>

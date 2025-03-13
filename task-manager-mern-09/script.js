@@ -1,8 +1,9 @@
 const API_URL = "https://67c838720acf98d070857695.mockapi.io/api/v1/tasks";
 
-const taskLists = document.getElementById("tasks");
+
 const taskForm = document.getElementById("new-task-form");
 const taskInputTitle = document.getElementById("task-title");
+const taskLists = document.getElementById("tasks"); //In the display section
 
 const fetchTasks = () => {
 	const xhr = new XMLHttpRequest();
@@ -24,6 +25,7 @@ const renderTasks = (tasks) => {
 
 		li.innerHTML = `<div class='single-task'>
     <p>${task.id}. ${task.title}</p>
+    <p>${task.title}</p>
     <div>
     <button class='edit-btn' data-id="${task.id}">EDIT</button>
     <button class='delete-btn' data-id="${task.id}">DELETE</button>
@@ -50,20 +52,24 @@ const renderTasks = (tasks) => {
 	});
 };
 
-const addTasks = (task) => {
-	const xhr = new XMLHttpRequest();
-	xhr.open("POST", API_URL, true);
-	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.onload = function () {
-		if (xhr.status === 201) {
-			alert("TASK ADDED SUCCESSFULLY");
-			fetchTasks();
-		}
-	};
-	xhr.send(JSON.stringify({ title: task, completed: false }));
-};
+		// For Task ADD
 
-const deleteTask = (taskID) => {
+	const addTasks = (task) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", API_URL, true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onload = function () {
+			if (xhr.status === 201) {
+				alert("TASK ADDED SUCCESSFULLY");
+				fetchTasks();
+			}
+		};
+		xhr.send(JSON.stringify({ title: task, completed: false }));
+	};
+
+
+		// For Task Delete
+function deleteTask(taskID) {
 	const xhr = new XMLHttpRequest();
 	xhr.open("DELETE", `${API_URL}/${taskID}`, true);
 	xhr.onload = function () {
@@ -72,10 +78,12 @@ const deleteTask = (taskID) => {
 		}
 	};
 	xhr.send();
-};
+}
 
 fetchTasks();
 
+
+// Make input field empty after adding Tasks
 taskForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	const taskTitle = taskInputTitle.value;
