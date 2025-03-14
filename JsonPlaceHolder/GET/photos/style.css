@@ -1,0 +1,31 @@
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* div created by dom */
+.photo-item {
+    width: 300px;
+    text-align: center;
+    box-shadow: 5px 5px 5px green;
+}
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+button {
+    font-size: 20px;
+    width: 80px;
+    background-color: bisque;
+    box-shadow: 2px 2px 2px goldenrod;
+    padding: 5px;
+    margin: 0 0 5px 5px;
+}
+
+button:hover {
+    background-color: rgb(121, 194, 127);
+    color: yellow;
+}
