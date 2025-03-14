@@ -7,39 +7,33 @@
     <style></style>
   </head>
   <body>
-    <h1>POST Method</h1>
+    <h1>PUT Method</h1>
     <div>
-      <input type="text" placeholder="Title" id="title" />
-      <input type="text" placeholder="Body" id="body" />
-      <button onclick="postData()">Create Post</button>
+      <!-- <input type="text" placeholder="Title" id="title" />
+      <input type="text" placeholder="Body" id="body" /> -->
+      <button onclick="postData()">Update Post</button>
     </div>
     <br />
     <hr />
 
-    <h2>Post result display</h2>
+    <h2>PUT Method: Update result display</h2>
 
     <div id="postResult"></div>
 
     <script>
       function postData() {
-        const postTitle = document.getElementById("title").value;
-        const postBody = document.getElementById("body").value;
-
-        if (!title || !body) {
-          alert("Please enter ttiel and body");
-          return;
-        }
-
-        console.log(title1, body1);
-
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://jsonplaceholder.typicode.com/posts", true);
+        xhr.open("PUT", "https://jsonplaceholder.typicode.com/posts/1", true);
         xhr.setRequestHeader("Content-Type", "application/json");
-        const data = JSON.stringify({ title: title1, body: body1 });
+        const data = JSON.stringify({
+          title: "Hello",
+          body: "Hello World",
+          userId: 1,
+        });
 
         //response
         xhr.onreadystatechange = function () {
-          if ((xhr.readyState == 4, xhr.status == 201)) {
+          if ((xhr.readyState == 4, xhr.status == 200)) {
             console.log(xhr.response);
 
             document.getElementById("postResult").innerText = xhr.responseText;
